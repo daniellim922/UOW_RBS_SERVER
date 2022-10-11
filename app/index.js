@@ -8,7 +8,6 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 app.use(cors());
 
 app.use(require("./site/router"));
-app.use("/api/login", require("./api/login/login.router"));
 app.use("/api/user", require("./api/user/user.router"));
 
 // Error Handling
