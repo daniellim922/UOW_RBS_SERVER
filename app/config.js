@@ -4,10 +4,6 @@ require("dotenv").config();
 const PRODUCTION = process.env.NODE_ENV === "production";
 
 if (PRODUCTION) {
-    config.express = {
-        port: 3000,
-        ip: process.env.EXPRESS_PORT,
-    };
     config.mongodb = {
         user: process.env.MONGODB_USER,
         password: process.env.MONGODB_PASSWORD,

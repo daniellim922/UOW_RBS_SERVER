@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const PRODUCTION = process.env.NODE_ENV === "production";
 
+// MONGODB
 main().catch((err) => console.log(err));
 async function main() {
     if (PRODUCTION) {
@@ -18,15 +19,28 @@ async function main() {
     console.log(`Mongo connected to ${uri}`);
 }
 
-app.listen(config.express.port, config.express.ip, function (error) {
-    if (error) {
-        console.error("Unable to listen for connections", error);
-        process.exit(10);
-    }
-    console.log(
-        "express is listening on http://" +
-            config.express.ip +
-            ":" +
-            config.express.port
-    );
-});
+// EXPRESS SERVER
+if (PRODCTION) {
+    app.listen(`${PORT}`, `0.0.0.0`, function (error) {
+        if (error) {
+            console.error("Unable to listen for connections", error);
+            process.exit(10);
+        }
+        console.log(
+            "express is listening on http://" + `0.0.0.0` + ":" + `${PORT}`
+        );
+    });
+} else {
+    app.listen(config.express.port, config.express.ip, function (error) {
+        if (error) {
+            console.error("Unable to listen for connections", error);
+            process.exit(10);
+        }
+        console.log(
+            "express is listening on http://" +
+                config.express.ip +
+                ":" +
+                config.express.port
+        );
+    });
+}
