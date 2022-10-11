@@ -5,8 +5,8 @@ const PRODUCTION = process.env.NODE_ENV === "production";
 
 if (PRODUCTION) {
     config.express = {
-        port: process.env.EXPRESS_PORT,
-        ip: process.env.EXPRESS_IP,
+        port: process.env.PORT,
+        ip: process.env.IP,
     };
 
     config.mongodb = {

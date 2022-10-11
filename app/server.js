@@ -20,25 +20,16 @@ async function main() {
 }
 
 // EXPRESS SERVER
-if (PRODUCTION) {
-    app.get("/", (req, res) => {
-        res.send("Hello World!");
-    });
 
-    app.listen(process.env.PORT, () => {
-        console.log(`Example app listening on port ${process.env.PORT}`);
-    });
-} else {
-    app.listen(config.express.port, config.express.ip, function (error) {
-        if (error) {
-            console.error("Unable to listen for connections", error);
-            process.exit(10);
-        }
-        console.log(
-            "express is listening on http://" +
-                config.express.ip +
-                ":" +
-                config.express.port
-        );
-    });
-}
+app.listen(config.express.port, config.express.ip, function (error) {
+    if (error) {
+        console.error("Unable to listen for connections", error);
+        process.exit(10);
+    }
+    console.log(
+        "express is listening on http://" +
+            config.express.ip +
+            ":" +
+            config.express.port
+    );
+});
