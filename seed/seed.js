@@ -2,11 +2,22 @@ const express = require("express");
 const app = express();
 const port = 8080;
 const mongoose = require("mongoose");
+const config = require("./config");
+
+require("dotenv").config();
+const PRODUCTION = process.env.NODE_ENV === "production";
+
 main().catch((err) => console.log(err));
 async function main() {
-    await mongoose.connect("mongodb://localhost:27017/UOW_RBS");
-
-    // use `await mongoose.connect('mongodb://user:password@localhost:27017/test');` if your database has auth enabled
+    if (PRODUCTION) {
+        const uri = `mongodb+srv://${config.mongodb.user}:${config.mongodb.password}@${config.mongodb.port}`;
+        await mongoose.connect(uri);
+        console.log(`Mongo connected to Atlas`);
+        return;
+    }
+    const uri = `mongodb://${config.mongodb.host}:${config.mongodb.port}/UOW_RBS`;
+    await mongoose.connect(uri);
+    console.log(`Mongo connected to ${uri}`);
 }
 
 const Staff = require("../app/api/user/staff.model");
