@@ -26,7 +26,7 @@ if (PRODUCTION) {
     });
 
     app.listen(port, () => {
-        console.log(`Example app listening on port ${port}`);
+        console.log(`Example app listening on port ${process.env.PORT}`);
     });
 } else {
     app.listen(config.express.port, config.express.ip, function (error) {
