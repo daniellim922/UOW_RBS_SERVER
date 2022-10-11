@@ -20,7 +20,7 @@ async function main() {
 }
 
 // EXPRESS SERVER
-if (PRODCTION) {
+if (PRODUCTION) {
     app.listen(`${PORT}`, `0.0.0.0`, function (error) {
         if (error) {
             console.error("Unable to listen for connections", error);
