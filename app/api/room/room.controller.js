@@ -48,6 +48,7 @@ module.exports = {
             schedules: schedules,
         });
         await newRoom.save();
+        res.json(true);
     },
     allRooms: async (req, res) => {
         const allRooms = await Room.find();
