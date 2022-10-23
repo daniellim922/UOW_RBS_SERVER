@@ -3,12 +3,13 @@ const app = express();
 const cors = require("cors");
 const ExpressError = require("./errors/ExpressError");
 
+app.use(cors());
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(cors());
 
 app.use(require("./site/router"));
 app.use("/api/user", require("./api/user/user.router"));
+app.use("/api/staff", require("./api/room/room.router"));
 
 // Error Handling
 app.all("*", (req, res, next) => {
