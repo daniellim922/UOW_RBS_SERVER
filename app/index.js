@@ -9,7 +9,8 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 
 app.use(require("./site/router"));
 app.use("/api/user", require("./api/user/user.router"));
-app.use("/api/staff", require("./api/room/room.router"));
+app.use("/api/staff", require("./api/staff/staff.router"));
+app.use("/api/student", require("./api/student/student.router"));
 
 // Error Handling
 app.all("*", (req, res, next) => {

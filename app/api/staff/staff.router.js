@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const catchAsync = require("../../errors/catchAsync");
 
-const room = require("./room.controller");
+const staffController = require("./staff.controller");
 
 // middleware that is specific to this router
 // router.use((func) => {
@@ -12,13 +12,14 @@ const room = require("./room.controller");
 // });
 router
     .route("/")
-    .get(catchAsync(room.allRooms))
-    .delete(catchAsync(room.deleteRoom));
+    .get(catchAsync(staffController.allRooms))
+    .put(catchAsync(staffController.updateRoom))
+    .delete(catchAsync(staffController.deleteRoom));
 
-router.route("/room/create").post(catchAsync(room.create));
+router.route("/room/create").post(catchAsync(staffController.create));
 router
     .route("/room/launch")
-    .get(catchAsync(room.allRooms))
-    .post(catchAsync(room.makeRoomAvail));
+    .get(catchAsync(staffController.allRooms))
+    .post(catchAsync(staffController.makeRoomAvail));
 
 module.exports = router;

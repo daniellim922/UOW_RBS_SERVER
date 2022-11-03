@@ -1,5 +1,4 @@
-const Room = require("./room.model");
-const room = require("./room.service");
+const Room = require("../../models/room.model");
 
 module.exports = {
     create: async (req, res) => {
@@ -69,5 +68,9 @@ module.exports = {
         const { id } = req.body;
         await Room.findByIdAndDelete(id);
         res.json(true);
+    },
+    updateRoom: async (req, res) => {
+        const { _id } = req.body;
+        await Room.findByIdAndUpdate(_id, req.body);
     },
 };
