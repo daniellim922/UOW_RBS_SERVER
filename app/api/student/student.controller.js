@@ -8,24 +8,26 @@ module.exports = {
         res.json(rooms);
     },
     bookARoom: async (req, res) => {
-        const { room_id, user_id, date, start, end, promo } = req.body;
+        const { room_id, user_id, date, start, end, promo, day, price } =
+            req.body;
         const room = await Room.findById(room_id);
         const student = await Student.findById(user_id);
 
         const booking = new Booking({
             room,
-            booked_by: student,
             date,
+            price: parseInt(price),
             start,
             end,
+            booked_by: student,
             promo,
-            price,
+            day,
         });
         await booking.save();
 
         student.bookings = booking;
         await student.save();
-        res.json(booking);
+        res.json(true);
     },
     allBookings: async (req, res) => {
         const { id } = req.body;
