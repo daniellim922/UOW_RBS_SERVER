@@ -23,7 +23,7 @@ app.use((err, req, res, next) => {
         err.message =
             "Something went wrong, inform media team on the bug you experienced";
     }
-    res.status(statusCode).render("error", { err });
+    res.status(statusCode);
 });
 // app.use(require("./errors/*"));
 
